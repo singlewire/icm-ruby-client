@@ -1,4 +1,4 @@
-# InformaCast Mobile REST Python Client
+# InformaCast Mobile REST Ruby Client
 
 A simple, easy to use REST client based on [rest-client](https://github.com/rest-client/rest-client)
 
