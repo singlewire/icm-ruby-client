@@ -6,13 +6,12 @@ require 'json'
 # This module provides an entry point for interacting with the InformaCast REST API
 module ICMClient
   class Client
-    # Extend forwardable to delegate to RestClient::Resource's get, post, put, delete
+    # Extend forwardable to delegate to RestClient::Resource's get, post, put, delete, head, and options
     extend Forwardable
 
-    def_delegators :@client, :get, :post, :put, :delete
+    def_delegators :@client, :get, :post, :put, :delete, :head, :options
 
-    attr_accessor :access_token
-    attr_reader :url, :client
+    attr_reader :url, :client, :access_token
 
     # The default limit for list/pagination
     DEFAULT_LIMIT = 100
