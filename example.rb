@@ -1,8 +1,8 @@
 require 'icm_client'
 require 'json'
 
-token = '3F24FYHHIUI6HPEMZAVBIT7LC64DAFJA45DRDY5VIHECUFCP5MLWVENH42IBA755VMXVBFOCHO7FZY5LQTLHVQ6ZGRZP4EAO3VLCEUQ='
-icm_client = ICMClient::Client.new(token, 'https://james.qadev.singlewire.com:8443/api/v1-DEV')
+token = '3F24FYHHIUI6HPEMZAVBIT7LC64DAFJA45DRDY5VIHECUFCP5MLV6EFZQRCJ4BMLFU2AZBQ2TWRAJQHOYJOHGPNUCLRWDDAWL7UFKRQ='
+icm_client = ICMClient::Client.new(token, {}, 'https://james.qadev.singlewire.com:8443/api/v1-DEV')
 
 #print icm_client.users.get
 
@@ -80,5 +80,41 @@ def getting_started_example(icm_client)
   end
 end
 
-getting_started_example icm_client
+def list_users_example(icm_client)
+  users = icm_client.users.list
+  users.each do |user|
+    puts
+    puts "-----"
+    puts JSON.pretty_generate(user)
+    puts "*********************"
+    puts users
+  end
+end
+
+def user_crud_example(icm_client)
+  begin
+    user = JSON.parse(
+      icm_client.users.post(
+      :name => 'Craig Smith',
+      :email => 'craig.smith@acme.com',
+      :lock => {
+        :start => '2015-04-16T14:50:23.126+0000',
+        :end => '2015-09-16T14:50:23.126+0000' }))
+    puts JSON.pretty_generate(user)
+    
+    puts "vvvvvvvv"
+    puts JSON.pretty_generate(JSON.parse(
+                               icm_client.users(user['id']).put(
+                               :name => 'Craig Jacob Smith')))
+    puts "^^^^^^^^"
+    
+    puts JSON.parse(icm_client.users(user['id']).delete)
+  rescue => e
+    p e
+  end
+end
+
+#user = JSON.parse(icm_client.users('8fa95070-fd3c-11e3-9c2f-c82a144feb17').get)
+#puts JSON.pretty_generate(user)
+#getting_started_example icm_client
 
