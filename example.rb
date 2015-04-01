@@ -1,7 +1,7 @@
 require 'icm_client'
 require 'json'
 
-token = '3F24FYHHIUI6HPEMZAVBIT7LC64DAFJA45DRDY5VIHECUFCP5MLV6EFZQRCJ4BMLFU2AZBQ2TWRAJQHOYJOHGPNUCLRWDDAWL7UFKRQ='
+token = '3F24FYHHIUI6HPEMZAVBIT7LC64DAFJA45DRDY5VIHECUFCP5MLXADABFHMBE5HWLWXKQTSONPEIC7CIRDOZITGGTCS6R3A3KJFG46I='
 icm_client = ICMClient::Client.new(token, {}, 'https://james.qadev.singlewire.com:8443/api/v1-DEV')
 
 #print icm_client.users.get
@@ -87,7 +87,6 @@ def list_users_example(icm_client)
     puts "-----"
     puts JSON.pretty_generate(user)
     puts "*********************"
-    puts users
   end
 end
 
@@ -114,7 +113,29 @@ def user_crud_example(icm_client)
   end
 end
 
+def user_subscription_example(icm_client)
+  # Shows how to do lazy enumeration of results, so output differs slightly raw
+  # shared example below.
+  begin
+    subs = icm_client.users('8fa95070-fd3c-11e3-9c2f-c82a144feb17').subscriptions.list
+    puts "Subscription count: #{subs.count}."
+    subs.each do |sub|
+      puts JSON.pretty_generate(sub)
+    end
+
+    sub = JSON.parse(icm_client.users('8fa95070-fd3c-11e3-9c2f-c82a144feb17').subscriptions('8fb3fed0-fd3c-11e3-9c2f-c82a144feb17').get)
+    puts JSON.pretty_generate(sub)
+
+  rescue => e
+    p e
+  end
+end
+
+
+
+#list_users_example(icm_client)
 #user = JSON.parse(icm_client.users('8fa95070-fd3c-11e3-9c2f-c82a144feb17').get)
 #puts JSON.pretty_generate(user)
 #getting_started_example icm_client
+
 
