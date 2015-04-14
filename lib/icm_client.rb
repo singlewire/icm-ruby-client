@@ -54,10 +54,10 @@ module ICMClient
         while true
           args.first[:params][:start] = next_token if next_token
           raw_response_str = nested_resource.get(*args)
-          response = JSON.parse(raw_response_str)
-          resources = response['data']
+          response = JSON.parse(raw_response_str, :symbolize_names => true)
+          resources = response[:data]
           resources.each { |resource| y.yield resource }
-          next_token = response['next']
+          next_token = response[:next]
           break unless next_token
         end
       end
