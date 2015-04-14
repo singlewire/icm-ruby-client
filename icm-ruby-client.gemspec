@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.description = %q{A simple ruby client for InformaCast Mobile.}
   spec.summary = %q{A simple ruby client for InformaCast Mobile based on the popular rest-client.}
   spec.homepage = 'https://github.com/singlewire/icm-ruby-client'
-  spec.license = 'TODO'
+  spec.license = 'MIT'
 
   spec.files = `git ls-files`.split($/)
   spec.test_files = spec.files.grep(%r{^(test|spec|features)/})
