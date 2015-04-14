@@ -15,7 +15,7 @@ gem install icm-ruby-client
 Require the client:
 
 ```ruby
-require 'icm_client'
+require 'icm_ruby_client'
 ```
 
 Create an instance of the client:
