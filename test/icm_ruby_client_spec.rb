@@ -1,4 +1,4 @@
-require 'icm_client'
+require 'icm_ruby_client'
 require 'rspec'
 require 'webmock/rspec'
 require 'json'

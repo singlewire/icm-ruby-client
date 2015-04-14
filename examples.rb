@@ -1,8 +1,9 @@
-require 'icm_client'
+require 'icm_ruby_client'
 require 'json'
 
 token = '3F24FYHHIUI6HPEMZAVBIT7LC64DAFJA45DRDY5VIHECUFCP5MLXADABFHMBE5HWLWXKQTSONPEIC7CIRDOZITGGTCS6R3A3KJFG46I='
-icm_client = ICMClient::Client.new(token, {}, 'https://james.qadev.singlewire.com:8443/api/v1-DEV')
+rest_client_opt = {}
+icm_client = ICMClient::Client.new(token, rest_client_opt, 'https://my-server-override.com/api/v1-DEV')
 
 #print icm_client.users.get
 
