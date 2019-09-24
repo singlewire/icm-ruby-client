@@ -1,3 +1,7 @@
+# DEPRECATION NOTICE
+
+This library is now deprecated and no longer maintained. We recommend using a popular and active Ruby HTTP client such as [rest-client](https://github.com/rest-client/rest-client).
+
 # InformaCast Mobile REST Ruby Client
 
 A simple, easy to use REST client based on [rest-client](https://github.com/rest-client/rest-client)
